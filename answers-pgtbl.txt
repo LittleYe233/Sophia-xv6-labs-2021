@@ -27,7 +27,7 @@ A stack containing the information of command-line arguments.
 
 * Page 1 in user mode
 
-No, because this page does not have the `PTE_U` flag.
+No, because the `PTE_U` flag of this page is not attributed.
 
 * What does the third to last page contain?
 
