@@ -1,0 +1,55 @@
+## Which registers contain arguments to functions? For example, which register holds 13 in main's call to printf?
+
+a0-7.
+
+In the example, a2 holds 13.
+
+## Where is the call to function f in the assembly code for main? Where is the call to g? (Hint: the compiler may inline functions.)
+
+For f, nowhere. `f(8)+1` is evaluated at compile-time so there is no call to it in the assembly code for main.
+
+For g, it is inlined in the assembly code for f.
+
+## At what address is the function printf located? 
+
+0x616.
+
+At address 0x30, the value of ra is `0x30 + (0x0[31:12]) << 12`, that is 0x30. At address 0x34, JALR makes a jump to address `ra + 1510`, that is 0x616.
+
+* References
+
+- https://stackoverflow.com/a/58282465/12002560.
+- https://medium.com/swlh/risc-v-assembly-for-beginners-387c6cd02c49
+- https://stackoverflow.com/a/52652533/12002560
+
+## What value is in the register ra just after the jalr to printf in main? 
+
+0x30.
+
+## What is the output? If the RISC-V were instead big-endian what would you set i to in order to yield the same output? Would you need to change 57616 to a different value?
+
+* Output
+
+He110 World
+
+* i
+
+0x726c6400.
+
+* 57616
+
+No.
+
+## In the following code, what is going to be printed after 'y='? (note: the answer is not a specific value.) Why does this happen?
+
+* Output
+
+A random signed 4-byte integer.
+
+* Reason
+
+It is an undefined behavior. In the assembly code, 3 is stored by register a1, and the missing argument of `printf` would be stored in a2, but it depends on the runtime.
+
+* References
+
+- https://stackoverflow.com/a/14838523/12002560
